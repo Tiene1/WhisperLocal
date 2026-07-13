@@ -8,9 +8,6 @@ de calcul de ta propre machine.
 Usage mono-utilisateur, sans authentification. Distribué en open-source
 — si tu clones ce repo, tu fais tourner ta propre instance isolée.
 
-> Le frontend (Next.js) arrive dans une phase ultérieure. Ce README
-> couvre pour l'instant la mise en route du **backend**.
-
 ---
 
 ## Prérequis
@@ -156,6 +153,10 @@ détail des ports).
 Au démarrage du conteneur `api`, le schéma de base de données est
 synchronisé automatiquement (`prisma db push`) — pas d'étape de
 migration manuelle nécessaire pour un premier lancement.
+
+**Pour tester rapidement** sans préparer ton propre fichier audio, un
+échantillon d'1 minute (domaine public) est fourni dans
+[`samples/`](samples/) — dépose-le simplement dans l'interface d'upload.
 
 ---
 
