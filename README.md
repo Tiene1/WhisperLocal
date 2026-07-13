@@ -8,6 +8,11 @@ de calcul de ta propre machine.
 Usage mono-utilisateur, sans authentification. Distribué en open-source
 — si tu clones ce repo, tu fais tourner ta propre instance isolée.
 
+![Démo WhisperLocal](assets/demo.gif)
+
+*Conteneurs Docker → transcription WhisperLocal → comparaison avec
+TurboScribe (plateforme commerciale).*
+
 ---
 
 ## Prérequis
