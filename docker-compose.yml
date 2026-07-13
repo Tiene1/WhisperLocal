@@ -1,0 +1,92 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: whisperlocal
+      POSTGRES_PASSWORD: whisperlocal
+      POSTGRES_DB: whisperlocal
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U whisperlocal -d whisperlocal"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: ./backend
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      # `service_started` (pas `service_healthy`) : la diarisation est une
+      # fonctionnalité opt-in, jamais bloquante (cf. ADR section 11) — l'API
+      # ne doit pas attendre que le pipeline pyannote soit chargé (potentiel-
+      # lement long) pour démarrer, seulement que le conteneur ait démarré.
+      diarization:
+        condition: service_started
+    environment:
+      DATABASE_URL: postgresql://whisperlocal:whisperlocal@postgres:5432/whisperlocal?schema=public
+      PORT: 3000
+      CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:3001}
+      # whisper.cpp n'est pas embarqué dans l'image (cf. Dockerfile) : le
+      # binaire compilé sur l'hôte est monté en volume ci-dessous.
+      WHISPER_CPP_BINARY_PATH: /whisper-bin/whisper-cli
+      WHISPER_MODELS_DIR: /models
+      FFMPEG_BINARY_PATH: /usr/bin/ffmpeg
+      FFPROBE_BINARY_PATH: /usr/bin/ffprobe
+      UPLOAD_TMP_DIR: /tmp/whisperlocal-uploads
+      MAX_UPLOAD_SIZE_MB: ${MAX_UPLOAD_SIZE_MB:-250}
+      # Service interne de diarisation (opt-in, jamais bloquant) — jamais
+      # exposé côté hôte, cf. service `diarization` ci-dessous.
+      DIARIZATION_SERVICE_URL: http://diarization:8001
+    volumes:
+      # Binaire whisper.cpp compilé sur l'hôte (cf. README — prérequis).
+      - ./whisper-bin:/whisper-bin:ro
+      # Modèles ggml (medium requis, base/small/large optionnels).
+      - ./models:/models:ro
+      # Fichiers audio temporaires (uploadés puis convertis en WAV) —
+      # volume nommé, pas besoin de persistance entre redémarrages.
+      - uploads_tmp:/tmp/whisperlocal-uploads
+    ports:
+      # Port hôte 3010 (au lieu de 3000) : évite un conflit avec un autre
+      # service déjà présent sur la machine de dev. Le port interne au
+      # conteneur reste 3000 (cf. PORT ci-dessus, inchangé).
+      - "3010:3000"
+
+  diarization:
+    build:
+      context: ./diarization
+    restart: unless-stopped
+    environment:
+      # Token Hugging Face (accès aux modèles gated pyannote/speaker-
+      # diarization-3.1 et pyannote/segmentation-3.0) — interpolé
+      # automatiquement par Docker Compose depuis le `.env` racine.
+      HF_TOKEN: ${HF_TOKEN}
+    volumes:
+      # Même volume nommé que `api` (lecture seule suffit) : lit les WAV
+      # directement sur le volume partagé, pas d'upload HTTP du fichier
+      # (cf. ADR section 11).
+      - uploads_tmp:/tmp/whisperlocal-uploads:ro
+    # Pas de port exposé côté hôte : accès interne uniquement, via le
+    # réseau Docker Compose (cf. ADR section 11 — jamais exposé côté hôte).
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        # URL de l'API telle que résolue par le NAVIGATEUR de l'utilisateur
+        # (pas par le réseau interne Docker) — intégrée au bundle Next.js
+        # au build (NEXT_PUBLIC_*), cf. frontend/CLAUDE.md.
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:3010}
+    restart: unless-stopped
+    depends_on:
+      - api
+    ports:
+      - "3001:3001"
+
+volumes:
+  postgres_data:
+  uploads_tmp:

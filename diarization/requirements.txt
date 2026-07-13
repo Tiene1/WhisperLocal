@@ -1,0 +1,26 @@
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+pydantic==2.10.4
+
+# CPU uniquement — ce projet tourne sans GPU (comme whisper.cpp), voir
+# Dockerfile pour l'index PyTorch CPU dédié (nettement plus léger que la
+# distribution CUDA par défaut de PyPI).
+torch==2.5.1
+torchaudio==2.5.1
+
+pyannote.audio==3.3.2
+# pyannote.audio 3.3.2 appelle encore hf_hub_download(..., use_auth_token=...)
+# en interne — cet alias a été retiré de huggingface_hub>=0.26, d'où un
+# TypeError au chargement du pipeline. On fixe une version compatible
+# (problème connu, cf. issues pyannote-audio côté GitHub).
+huggingface_hub==0.25.2
+# Dépendance transitive non déclarée par pyannote.audio : ses modules de
+# tâches d'entraînement (importés même en pure inférence, via la chaîne
+# d'import pipelines -> tasks) font `import matplotlib.pyplot` en haut de
+# fichier. Jamais utilisé pour du rendu ici, juste requis à l'import.
+matplotlib==3.9.4
+# Épinglage explicite d'une version différente de celle qui échouait à la
+# vérification de hash à 3 reprises (fichier mako-1.3.12 systématiquement
+# corrompu en téléchargement, probablement un nœud CDN en cache défaillant)
+# — contourne l'objet problématique plutôt que de retenter indéfiniment.
+Mako==1.3.9

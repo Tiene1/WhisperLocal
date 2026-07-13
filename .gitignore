@@ -1,0 +1,33 @@
+# Binaires whisper.cpp et modèles ggml fournis par l'utilisateur
+# (cf. README — prérequis de setup, jamais commités dans le repo)
+/whisper-bin/
+/models/
+
+# Dépendances
+**/node_modules/
+
+# Builds
+**/dist/
+**/.next/
+frontend/coverage/
+backend/coverage/
+frontend/playwright-report/
+frontend/test-results/
+
+# Environnement
+.env
+.env.local
+**/.env
+**/.env.local
+
+# Mémoire Claude Code (session de travail, mémoire des agents) — jamais
+# destinée à être publiée, purement locale.
+**/.claude/
+
+# Documents de contexte initiaux (ADR/architecture bruts, maquettes HTML)
+# fournis en amont du développement — déjà intégrés proprement dans
+# backend/docs/ et frontend/docs/, redondants dans l'historique git.
+# (Note : WhisperLocal Web.drawio est volontairement gardé et versionné —
+# schémas C4 utiles pour comprendre l'architecture visuellement.)
+/files/
+/Code Source HTML WhisperLocal.txt

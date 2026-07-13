@@ -1,0 +1,50 @@
+// Schéma Prisma — WhisperLocal
+// Voir docs/architecture.md pour le contrat exact de ce modèle.
+
+generator client {
+  provider      = "prisma-client-js"
+  // "native" seul ne suffit pas ici : l'étape "build" du Dockerfile
+  // (node:22-bookworm-slim, sans libssl installée explicitement) ne
+  // détecte pas la version d'OpenSSL et génère par défaut pour
+  // "debian-openssl-1.1.x", alors que l'étape "runtime" installe ffmpeg
+  // (qui tire libssl3) et tourne donc en OpenSSL 3.0.x — d'où le
+  // mismatch d'engine au démarrage. On cible explicitement les deux cas.
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model TranscriptionJob {
+  id              String    @id @default(uuid())
+  filename        String
+  status          JobStatus @default(PENDING)
+  model           String    @default("medium")
+  language        String    @default("fr")
+  durationSeconds Int?
+  progress        Int       @default(0)
+  resultText      String?
+  resultSrt       String?
+  errorMessage    String?
+  // Diarisation (identification des locuteurs, opt-in) — cf. ADR section 11.
+  // `speakerSegments` reste `null` tant que la diarisation n'a pas réussi,
+  // même si `diarizationEnabled` est vrai (échec non bloquant du service).
+  diarizationEnabled Boolean @default(false)
+  speakerSegments    Json?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  startedAt       DateTime?
+  completedAt     DateTime?
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+enum JobStatus {
+  PENDING
+  PROCESSING
+  DONE
+  FAILED
+}

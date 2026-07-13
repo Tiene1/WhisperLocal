@@ -1,0 +1,1220 @@
+<!-- Design System -->
+<!DOCTYPE html>
+
+<html class="dark" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>WhisperLocal - Dashboard</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed": "#e1e0ff",
+                      "on-secondary-fixed-variant": "#3c475a",
+                      "on-secondary-container": "#aeb9d0",
+                      "on-error": "#690005",
+                      "on-secondary": "#263143",
+                      "surface-variant": "#2d3449",
+                      "bg-base": "#020617",
+                      "surface-card": "#0F172A",
+                      "tertiary-container": "#8083ff",
+                      "on-surface-variant": "#c2c6d6",
+                      "primary": "#adc6ff",
+                      "on-primary-fixed": "#001a42",
+                      "on-surface": "#dae2fd",
+                      "inverse-on-surface": "#283044",
+                      "inverse-surface": "#dae2fd",
+                      "surface": "#0b1326",
+                      "secondary-container": "#3e495d",
+                      "on-background": "#dae2fd",
+                      "surface-container-lowest": "#060e20",
+                      "primary-container": "#4d8eff",
+                      "surface-elevated": "#1E293B",
+                      "on-tertiary-fixed": "#07006c",
+                      "error": "#ffb4ab",
+                      "on-primary-container": "#00285d",
+                      "on-tertiary-container": "#0d0096",
+                      "surface-dim": "#0b1326",
+                      "on-primary-fixed-variant": "#004395",
+                      "surface-container-low": "#131b2e",
+                      "secondary-fixed": "#d8e3fb",
+                      "tertiary-fixed-dim": "#c0c1ff",
+                      "tertiary": "#c0c1ff",
+                      "status-done": "#10B981",
+                      "status-failed": "#F97316",
+                      "status-processing": "#3B82F6",
+                      "outline": "#8c909f",
+                      "error-container": "#93000a",
+                      "outline-variant": "#424754",
+                      "surface-bright": "#31394d",
+                      "primary-fixed-dim": "#adc6ff",
+                      "status-pending": "#64748B",
+                      "on-secondary-fixed": "#111c2d",
+                      "on-error-container": "#ffdad6",
+                      "primary-fixed": "#d8e2ff",
+                      "surface-container-highest": "#2d3449",
+                      "secondary": "#bcc7de",
+                      "surface-container-high": "#222a3d",
+                      "on-tertiary": "#1000a9",
+                      "waveform-stroke": "#1E293B",
+                      "on-tertiary-fixed-variant": "#2f2ebe",
+                      "on-primary": "#002e6a",
+                      "surface-container": "#171f33",
+                      "secondary-fixed-dim": "#bcc7de",
+                      "background": "#0b1326",
+                      "inverse-primary": "#005ac2",
+                      "surface-tint": "#adc6ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "stack-lg": "32px",
+                      "margin": "40px",
+                      "stack-md": "16px",
+                      "stack-sm": "8px",
+                      "container-max": "1200px"
+              },
+              "fontFamily": {
+                      "headline-md": [
+                              "IBM Plex Sans"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "JetBrains Mono"
+                      ],
+                      "code": [
+                              "JetBrains Mono"
+                      ],
+                      "label-md": [
+                              "JetBrains Mono"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "IBM Plex Sans"
+                      ],
+                      "headline-sm": [
+                              "IBM Plex Sans"
+                      ]
+              },
+              "fontSize": {
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "code": [
+                              "13px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-sm": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .waveform-bg {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10 Q 25 0, 50 10 T 100 10' fill='none' stroke='%231E293B' stroke-width='1' opacity='0.5'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+        .upload-dashed {
+            border: 2px dashed #1E293B;
+            transition: all 0.2s ease;
+        }
+        .upload-dashed:hover {
+            border-color: #3B82F6;
+            background-color: rgba(59, 130, 246, 0.05);
+        }
+        /* Custom Scrollbar for dark theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #020617; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1E293B; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3B82F6; 
+        }
+      </style>
+</head>
+<body class="bg-bg-base text-on-surface min-h-screen flex font-body-md overflow-hidden antialiased">
+<!-- Pattern Overlay -->
+<div class="fixed inset-0 pointer-events-none opacity-10 waveform-bg z-0"></div>
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col h-screen p-stack-md bg-surface border-r border-outline-variant docked h-full left-0 w-64 z-10 shrink-0 relative">
+<!-- Brand -->
+<div class="flex items-center gap-3 px-3 py-4 mb-stack-md">
+<div class="w-8 h-8 rounded bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">graphic_eq</span>
+</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary tracking-tight">WhisperLocal</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Local Transcription</p>
+</div>
+</div>
+<!-- CTA -->
+<button class="w-full bg-primary-container text-on-primary-container py-3 px-4 rounded-lg font-label-md text-label-md font-medium mb-stack-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">add</span>
+            New Transcription
+        </button>
+<!-- Main Nav -->
+<nav class="flex-1 space-y-2">
+<!-- Active: Transcribe -->
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-xl transition-all scale-95 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">mic</span>
+                Transcribe
+            </a>
+<!-- Inactive: History -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-xl transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">history</span>
+                History
+            </a>
+</nav>
+<!-- Footer Nav -->
+<div class="mt-auto space-y-2 pt-4 border-t border-surface-elevated">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-xl transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-xl transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">description</span>
+                Docs
+            </a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col h-screen overflow-y-auto z-10 relative">
+<!-- Mobile TopAppBar (Visible only on md hidden) -->
+<header class="md:hidden flex justify-between items-center px-margin py-stack-md w-full max-w-container-max mx-auto bg-bg-base border-b border-outline-variant docked full-width top-0 z-20">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">graphic_eq</span>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tight">WhisperLocal</h1>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined">settings</span></button>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined">help_outline</span></button>
+</div>
+</header>
+<!-- Canvas -->
+<div class="p-margin max-w-container-max mx-auto w-full flex-1 flex flex-col gap-stack-lg">
+<!-- Header Section -->
+<div class="flex flex-col gap-2">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Nouvelle Transcription</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Déposez un fichier audio ou vidéo. Le traitement s'effectue localement sur votre machine.</p>
+</div>
+<!-- UploadForm Zone (Bento Grid Style) -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Main Drag & Drop Area -->
+<div class="lg:col-span-2 bg-surface-card rounded-xl border border-surface-elevated p-1 overflow-hidden group">
+<div class="w-full h-64 sm:h-80 upload-dashed rounded-lg flex flex-col items-center justify-center p-stack-lg relative cursor-pointer">
+<div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center mb-4 group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors duration-300">
+<span class="material-symbols-outlined text-3xl text-on-surface-variant group-hover:text-on-primary-container">cloud_upload</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Glissez &amp; Déposez</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-center max-w-xs">
+                            MP3, WAV, M4A, MP4 supportés.
+                        </p>
+<div class="mt-stack-md flex gap-4">
+<span class="font-label-sm text-label-sm text-status-pending px-3 py-1 bg-surface-container rounded-full border border-surface-elevated">Max 250Mo</span>
+<span class="font-label-sm text-label-sm text-status-pending px-3 py-1 bg-surface-container rounded-full border border-surface-elevated">Max 3h</span>
+</div>
+</div>
+</div>
+<!-- Settings Card (Asymmetric Layout) -->
+<div class="lg:col-span-1 bg-surface-card rounded-xl border border-surface-elevated p-stack-md flex flex-col gap-stack-md">
+<h3 class="font-headline-sm text-headline-sm text-on-surface border-b border-surface-elevated pb-2">Paramètres du Modèle</h3>
+<div class="space-y-4 flex-1">
+<!-- Model Selection -->
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Taille du Modèle</label>
+<select class="bg-bg-base border border-surface-elevated text-on-surface font-body-sm text-body-sm rounded-lg p-2.5 focus:border-primary focus:ring-1 focus:ring-primary outline-none">
+<option>Large (Meilleure précision)</option>
+<option>Medium (Équilibré)</option>
+<option>Small (Rapide)</option>
+<option>Base (Très rapide)</option>
+</select>
+</div>
+<!-- Language -->
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Langue de l'audio</label>
+<select class="bg-bg-base border border-surface-elevated text-on-surface font-body-sm text-body-sm rounded-lg p-2.5 focus:border-primary focus:ring-1 focus:ring-primary outline-none">
+<option>Détection Automatique</option>
+<option selected="">Français</option>
+<option>Anglais</option>
+<option>Espagnol</option>
+</select>
+</div>
+<!-- Format Output -->
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Format de Sortie</label>
+<div class="flex gap-2">
+<label class="flex items-center gap-2 p-2 border border-surface-elevated rounded-lg bg-bg-base cursor-pointer hover:border-primary transition-colors flex-1">
+<input checked="" class="rounded border-surface-elevated bg-surface text-primary focus:ring-primary focus:ring-offset-bg-base" type="checkbox"/>
+<span class="font-code text-code text-on-surface">TXT</span>
+</label>
+<label class="flex items-center gap-2 p-2 border border-surface-elevated rounded-lg bg-bg-base cursor-pointer hover:border-primary transition-colors flex-1">
+<input checked="" class="rounded border-surface-elevated bg-surface text-primary focus:ring-primary focus:ring-offset-bg-base" type="checkbox"/>
+<span class="font-code text-code text-on-surface">SRT</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- History Summary Section -->
+<div class="mt-stack-md flex flex-col gap-stack-md">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Travaux Récents</h3>
+<a class="font-label-sm text-label-sm text-primary hover:text-primary-container transition-colors flex items-center gap-1" href="#">Voir tout <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
+</div>
+<div class="bg-surface-card border border-surface-elevated rounded-xl overflow-hidden">
+<!-- History List Header -->
+<div class="grid grid-cols-12 gap-4 p-4 border-b border-surface-elevated font-label-sm text-label-sm text-on-surface-variant bg-surface-container-lowest">
+<div class="col-span-6 md:col-span-5">Fichier</div>
+<div class="hidden md:block col-span-3">Modèle</div>
+<div class="col-span-3 md:col-span-2">Durée</div>
+<div class="col-span-3 md:col-span-2 text-right">Statut</div>
+</div>
+<!-- List Items -->
+<div class="flex flex-col">
+<!-- Item 1: Processing -->
+<div class="grid grid-cols-12 gap-4 p-4 items-center border-b border-surface-elevated hover:bg-surface-container-lowest transition-colors">
+<div class="col-span-6 md:col-span-5 flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">audio_file</span>
+<span class="font-body-sm text-body-sm text-on-surface truncate">interview_client_v2.wav</span>
+</div>
+<div class="hidden md:block col-span-3 font-code text-code text-on-surface-variant">Large (FR)</div>
+<div class="col-span-3 md:col-span-2 font-code text-code text-on-surface-variant">45:12</div>
+<div class="col-span-3 md:col-span-2 flex justify-end">
+<div class="inline-flex items-center gap-1.5 px-2 py-1 rounded border border-status-processing/30 bg-status-processing/10">
+<div class="w-1.5 h-1.5 rounded-full bg-status-processing animate-pulse"></div>
+<span class="font-label-sm text-label-sm text-status-processing">En cours</span>
+</div>
+</div>
+</div>
+<!-- Item 2: Done -->
+<div class="grid grid-cols-12 gap-4 p-4 items-center border-b border-surface-elevated hover:bg-surface-container-lowest transition-colors group cursor-pointer">
+<div class="col-span-6 md:col-span-5 flex items-center gap-3">
+<span class="material-symbols-outlined text-status-done">check_circle</span>
+<span class="font-body-sm text-body-sm text-on-surface truncate group-hover:text-primary transition-colors">reunion_hebdo.mp3</span>
+</div>
+<div class="hidden md:block col-span-3 font-code text-code text-on-surface-variant">Medium (FR)</div>
+<div class="col-span-3 md:col-span-2 font-code text-code text-on-surface-variant">12:05</div>
+<div class="col-span-3 md:col-span-2 flex justify-end gap-2">
+<button class="text-on-surface-variant hover:text-primary transition-colors" title="Télécharger">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+<span class="font-label-sm text-label-sm text-status-done px-2 py-1 bg-status-done/10 rounded border border-status-done/20">Terminé</span>
+</div>
+</div>
+<!-- Item 3: Failed -->
+<div class="grid grid-cols-12 gap-4 p-4 items-center hover:bg-surface-container-lowest transition-colors group">
+<div class="col-span-6 md:col-span-5 flex items-center gap-3">
+<span class="material-symbols-outlined text-status-failed">error</span>
+<span class="font-body-sm text-body-sm text-on-surface truncate">corrupted_audio.m4a</span>
+</div>
+<div class="hidden md:block col-span-3 font-code text-code text-on-surface-variant">Large (Auto)</div>
+<div class="col-span-3 md:col-span-2 font-code text-code text-on-surface-variant">--:--</div>
+<div class="col-span-3 md:col-span-2 flex justify-end gap-2">
+<button class="text-on-surface-variant hover:text-on-surface transition-colors" title="Réessayer">
+<span class="material-symbols-outlined text-[20px]">refresh</span>
+</button>
+<span class="font-label-sm text-label-sm text-status-failed px-2 py-1 bg-status-failed/10 rounded border border-status-failed/20">Échec</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>
+
+<!-- Tableau de bord - Transcrire -->
+<!DOCTYPE html>
+
+<html class="dark" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Traitement en cours - WhisperLocal</title>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#e1e0ff",
+                        "on-secondary-fixed-variant": "#3c475a",
+                        "on-secondary-container": "#aeb9d0",
+                        "on-error": "#690005",
+                        "on-secondary": "#263143",
+                        "surface-variant": "#2d3449",
+                        "bg-base": "#020617",
+                        "surface-card": "#0F172A",
+                        "tertiary-container": "#8083ff",
+                        "on-surface-variant": "#c2c6d6",
+                        "primary": "#adc6ff",
+                        "on-primary-fixed": "#001a42",
+                        "on-surface": "#dae2fd",
+                        "inverse-on-surface": "#283044",
+                        "inverse-surface": "#dae2fd",
+                        "surface": "#0b1326",
+                        "secondary-container": "#3e495d",
+                        "on-background": "#dae2fd",
+                        "surface-container-lowest": "#060e20",
+                        "primary-container": "#4d8eff",
+                        "surface-elevated": "#1E293B",
+                        "on-tertiary-fixed": "#07006c",
+                        "error": "#ffb4ab",
+                        "on-primary-container": "#00285d",
+                        "on-tertiary-container": "#0d0096",
+                        "surface-dim": "#0b1326",
+                        "on-primary-fixed-variant": "#004395",
+                        "surface-container-low": "#131b2e",
+                        "secondary-fixed": "#d8e3fb",
+                        "tertiary-fixed-dim": "#c0c1ff",
+                        "tertiary": "#c0c1ff",
+                        "status-done": "#10B981",
+                        "status-failed": "#F97316",
+                        "status-processing": "#3B82F6",
+                        "outline": "#8c909f",
+                        "error-container": "#93000a",
+                        "outline-variant": "#424754",
+                        "surface-bright": "#31394d",
+                        "primary-fixed-dim": "#adc6ff",
+                        "status-pending": "#64748B",
+                        "on-secondary-fixed": "#111c2d",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed": "#d8e2ff",
+                        "surface-container-highest": "#2d3449",
+                        "secondary": "#bcc7de",
+                        "surface-container-high": "#222a3d",
+                        "on-tertiary": "#1000a9",
+                        "waveform-stroke": "#1E293B",
+                        "on-tertiary-fixed-variant": "#2f2ebe",
+                        "on-primary": "#002e6a",
+                        "surface-container": "#171f33",
+                        "secondary-fixed-dim": "#bcc7de",
+                        "background": "#0b1326",
+                        "inverse-primary": "#005ac2",
+                        "surface-tint": "#adc6ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "stack-lg": "32px",
+                        "margin": "40px",
+                        "stack-md": "16px",
+                        "stack-sm": "8px",
+                        "container-max": "1200px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["IBM Plex Sans"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["JetBrains Mono"],
+                        "code": ["JetBrains Mono"],
+                        "label-md": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["IBM Plex Sans"],
+                        "headline-sm": ["IBM Plex Sans"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "code": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .waveform-bar {
+            width: 4px;
+            background-color: theme('colors.primary-container');
+            border-radius: 2px;
+            animation: pulse-wave 1s infinite ease-in-out alternate;
+        }
+        @keyframes pulse-wave {
+            0% { transform: scaleY(0.2); opacity: 0.5; }
+            100% { transform: scaleY(1); opacity: 1; }
+        }
+        .glowing-border {
+            box-shadow: 0 0 12px 2px rgba(59, 130, 246, 0.2);
+            animation: border-glow 2s infinite alternate;
+        }
+        @keyframes border-glow {
+            0% { border-color: rgba(59, 130, 246, 0.4); box-shadow: 0 0 8px rgba(59, 130, 246, 0.1); }
+            100% { border-color: rgba(59, 130, 246, 1); box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); }
+        }
+    </style>
+</head>
+<body class="bg-bg-base text-on-surface flex h-screen overflow-hidden font-body-md text-body-md">
+<!-- Shared Component: SideNavBar -->
+<aside class="bg-surface dark:bg-surface text-primary dark:text-primary docked h-full left-0 w-64 border-r border-outline-variant flat no shadows flex flex-col h-screen p-stack-md shrink-0 hidden md:flex">
+<!-- Header -->
+<div class="mb-stack-lg flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary-container flex items-center justify-center text-on-primary-container font-headline-sm text-headline-sm font-bold">W</div>
+<div>
+<div class="font-headline-sm text-headline-sm font-bold text-primary">WhisperLocal</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Local Transcription</div>
+</div>
+</div>
+<!-- CTA -->
+<button class="mb-stack-lg w-full bg-primary-container text-white py-2 rounded font-label-md text-label-md hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add</span>
+            New Transcription
+        </button>
+<!-- Main Navigation -->
+<nav class="flex-1 space-y-2">
+<!-- Active Tab: Transcribe -->
+<a class="flex items-center gap-3 p-3 bg-secondary-container text-on-secondary-container rounded-xl font-label-md text-label-md Active: scale-95 transition-transform hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">mic</span>
+                Transcribe
+            </a>
+<!-- Inactive Tab: History -->
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-high rounded-xl font-label-md text-label-md hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">history</span>
+                History
+            </a>
+</nav>
+<!-- Footer Navigation -->
+<nav class="space-y-2 mt-auto border-t border-outline-variant pt-stack-md">
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-high rounded-xl font-label-md text-label-md hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-high rounded-xl font-label-md text-label-md hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">description</span>
+                Docs
+            </a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col items-center justify-center relative p-margin">
+<!-- Subtle Background Pattern -->
+<div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(theme('colors.on-surface') 1px, transparent 1px); background-size: 24px 24px;"></div>
+<!-- Processing Container (Bento/Glassmorphism inspired, tech minimalist) -->
+<div class="w-full max-w-[700px] bg-surface-card border border-surface-elevated rounded-xl p-stack-lg relative z-10 flex flex-col gap-stack-lg shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+<!-- Header / Status -->
+<div class="flex items-start justify-between border-b border-surface-elevated pb-stack-md">
+<div>
+<h1 class="font-headline-md text-headline-md text-on-surface mb-2">Transcription en cours</h1>
+<div class="flex items-center gap-2 font-code text-code text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">audio_file</span>
+<span>reunion_projet_q3.wav</span>
+</div>
+</div>
+<!-- Status Poller Badge -->
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded border-2 border-status-processing glowing-border bg-surface-dim font-code text-code text-status-processing">
+<span class="w-2 h-2 rounded-full bg-status-processing animate-pulse"></span>
+                    PROCESSING
+                </div>
+</div>
+<!-- Visualizer Area -->
+<div class="h-32 w-full bg-bg-base border border-surface-elevated rounded-lg flex items-center justify-center overflow-hidden relative">
+<!-- CSS Waveform -->
+<div class="flex items-end gap-1 h-16 px-4">
+<script>
+                        // Inject random bars for waveform
+                        for(let i=0; i<40; i++) {
+                            const delay = (Math.random() * 1).toFixed(2);
+                            const duration = (0.5 + Math.random() * 0.8).toFixed(2);
+                            document.write(`<div class="waveform-bar h-full" style="animation-delay: -${delay}s; animation-duration: ${duration}s;"></div>`);
+                        }
+                    </script>
+</div>
+<!-- Time overlay -->
+<div class="absolute bottom-3 right-3 font-code text-code text-on-surface-variant bg-surface/80 px-2 py-1 rounded backdrop-blur-sm">
+                    00:14 / ~03:45
+                </div>
+</div>
+<!-- Metadata / Engine Info -->
+<div class="grid grid-cols-2 gap-gutter text-on-surface-variant">
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Modèle</span>
+<span class="font-code text-code text-on-surface">large-v3 (fr)</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Début</span>
+<span class="font-code text-code text-on-surface">14:32:05 CET</span>
+</div>
+</div>
+<!-- Security / Local Notice -->
+<div class="mt-stack-sm flex items-center gap-3 p-4 bg-surface-container-low border border-surface-elevated rounded-lg text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-status-done text-[20px]">shield_lock</span>
+<div>
+<strong class="text-on-surface block mb-1">Traitement 100% Local</strong>
+                    L'inférence s'exécute directement sur votre matériel. Aucune donnée audio n'est transmise sur le réseau.
+                </div>
+</div>
+<!-- Actions -->
+<div class="flex justify-end pt-stack-sm">
+<button class="px-4 py-2 font-code text-code text-error border border-error/30 rounded hover:bg-error/10 transition-colors">
+                    Cancel Job
+                </button>
+</div>
+</div>
+</main>
+</body></html>
+
+<!-- Traitement en cours -->
+<!DOCTYPE html>
+
+<html class="dark" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>WhisperLocal - Résultat de Transcription</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600&amp;family=Inter:wght@400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#e1e0ff",
+                        "on-secondary-fixed-variant": "#3c475a",
+                        "on-secondary-container": "#aeb9d0",
+                        "on-error": "#690005",
+                        "on-secondary": "#263143",
+                        "surface-variant": "#2d3449",
+                        "bg-base": "#020617",
+                        "surface-card": "#0F172A",
+                        "tertiary-container": "#8083ff",
+                        "on-surface-variant": "#c2c6d6",
+                        "primary": "#adc6ff",
+                        "on-primary-fixed": "#001a42",
+                        "on-surface": "#dae2fd",
+                        "inverse-on-surface": "#283044",
+                        "inverse-surface": "#dae2fd",
+                        "surface": "#0b1326",
+                        "secondary-container": "#3e495d",
+                        "on-background": "#dae2fd",
+                        "surface-container-lowest": "#060e20",
+                        "primary-container": "#4d8eff",
+                        "surface-elevated": "#1E293B",
+                        "on-tertiary-fixed": "#07006c",
+                        "error": "#ffb4ab",
+                        "on-primary-container": "#00285d",
+                        "on-tertiary-container": "#0d0096",
+                        "surface-dim": "#0b1326",
+                        "on-primary-fixed-variant": "#004395",
+                        "surface-container-low": "#131b2e",
+                        "secondary-fixed": "#d8e3fb",
+                        "tertiary-fixed-dim": "#c0c1ff",
+                        "tertiary": "#c0c1ff",
+                        "status-done": "#10B981",
+                        "status-failed": "#F97316",
+                        "status-processing": "#3B82F6",
+                        "outline": "#8c909f",
+                        "error-container": "#93000a",
+                        "outline-variant": "#424754",
+                        "surface-bright": "#31394d",
+                        "primary-fixed-dim": "#adc6ff",
+                        "status-pending": "#64748B",
+                        "on-secondary-fixed": "#111c2d",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed": "#d8e2ff",
+                        "surface-container-highest": "#2d3449",
+                        "secondary": "#bcc7de",
+                        "surface-container-high": "#222a3d",
+                        "on-tertiary": "#1000a9",
+                        "waveform-stroke": "#1E293B",
+                        "on-tertiary-fixed-variant": "#2f2ebe",
+                        "on-primary": "#002e6a",
+                        "surface-container": "#171f33",
+                        "secondary-fixed-dim": "#bcc7de",
+                        "background": "#0b1326",
+                        "inverse-primary": "#005ac2",
+                        "surface-tint": "#adc6ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "stack-lg": "32px",
+                        "margin": "40px",
+                        "stack-md": "16px",
+                        "stack-sm": "8px",
+                        "container-max": "1200px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["IBM Plex Sans"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["JetBrains Mono"],
+                        "code": ["JetBrains Mono"],
+                        "label-md": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["IBM Plex Sans"],
+                        "headline-sm": ["IBM Plex Sans"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "code": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[style*="font-variation-settings: 'FILL' 1;"] {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-bg-base text-on-surface font-body-md h-screen flex overflow-hidden">
+<!-- SideNavBar -->
+<nav class="bg-surface border-r border-outline-variant docked h-full left-0 w-64 flex flex-col p-stack-md hidden md:flex shrink-0">
+<!-- Header -->
+<div class="mb-stack-lg flex flex-col gap-2">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary tracking-tight">WhisperLocal</h1>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Local Transcription</span>
+</div>
+<!-- CTA -->
+<button class="bg-primary text-on-primary font-label-md text-label-md rounded px-4 py-2 mb-stack-lg flex items-center justify-center gap-2 hover:bg-primary-container transition-colors w-full">
+<span class="material-symbols-outlined text-[18px]">add</span>
+            New Transcription
+        </button>
+<!-- Main Tabs -->
+<ul class="flex flex-col gap-2 flex-grow">
+<li>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-xl flex items-center gap-3 px-4 py-3 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="mic">mic</span>
+<span class="font-label-md text-label-md">Transcribe</span>
+</a>
+</li>
+<li>
+<a class="bg-secondary-container text-on-secondary-container rounded-xl flex items-center gap-3 px-4 py-3 scale-95 transition-transform" href="#" style="transform: scale(0.98);">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-md text-label-md">History</span>
+</a>
+</li>
+</ul>
+<!-- Footer Tabs -->
+<ul class="flex flex-col gap-2 mt-auto pt-stack-md border-t border-surface-elevated">
+<li>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-xl flex items-center gap-3 px-4 py-3 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</li>
+<li>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-xl flex items-center gap-3 px-4 py-3 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-label-md text-label-md">Docs</span>
+</a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col overflow-y-auto relative bg-bg-base bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48cGF0aCBkPSJNMzAgMEw2MCAzMEwzMCA2MEwwIDMweiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMUUyOTNCIiBzdHJva2Utb3BhY2l0eT0iMC4xIi8+PC9zdmc+')]">
+<!-- TopAppBar (Mobile Only - Conceptual equivalent) -->
+<header class="flex justify-between items-center px-gutter py-stack-md w-full border-b border-outline-variant md:hidden bg-bg-base">
+<h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tight">WhisperLocal</h1>
+<div class="flex gap-4 text-primary">
+<span class="material-symbols-outlined hover:text-primary transition-colors cursor-pointer" data-icon="settings">settings</span>
+<span class="material-symbols-outlined hover:text-primary transition-colors cursor-pointer" data-icon="help_outline">help_outline</span>
+</div>
+</header>
+<div class="max-w-container-max mx-auto w-full px-gutter md:px-margin py-stack-lg flex-1 flex flex-col">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-stack-lg gap-4">
+<div>
+<div class="flex items-center gap-3 mb-2">
+<a class="text-on-surface-variant hover:text-primary transition-colors flex items-center" href="#">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+</a>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">interview_ceo_q3.wav</h2>
+<span class="bg-status-done/10 text-status-done border border-status-done/30 px-2 py-0.5 rounded font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                            TERMINÉ
+                        </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex gap-4">
+<span>Modèle: Whisper Medium</span>
+<span>•</span>
+<span>Durée: 45:12</span>
+<span>•</span>
+<span>Achevé le 24 Oct, 14:30</span>
+</p>
+</div>
+<!-- Export Actions -->
+<div class="flex gap-3">
+<button class="text-on-surface-variant hover:text-on-surface font-label-md text-label-md px-4 py-2 border border-surface-elevated rounded hover:border-outline-variant transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">subtitles</span>
+                        SRT
+                    </button>
+<button class="text-on-surface-variant hover:text-on-surface font-label-md text-label-md px-4 py-2 border border-surface-elevated rounded hover:border-outline-variant transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">description</span>
+                        DOCX
+                    </button>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded hover:bg-primary-container transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                        Télécharger TXT
+                    </button>
+</div>
+</div>
+<!-- Transcription Canvas -->
+<div class="bg-surface-card border border-surface-elevated rounded-lg flex-1 flex flex-col overflow-hidden">
+<div class="border-b border-surface-elevated px-stack-md py-3 flex justify-between items-center bg-surface">
+<span class="font-label-md text-label-md text-on-surface-variant">Texte transcrit</span>
+<button class="text-on-surface-variant hover:text-on-surface flex items-center gap-2 font-label-sm text-label-sm transition-colors">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+                        Copier
+                    </button>
+</div>
+<div class="p-stack-lg overflow-y-auto flex-1 font-body-lg text-body-lg text-on-surface leading-relaxed">
+<p class="mb-4">
+                        Bonjour à tous et bienvenue à cette réunion trimestrielle. Je suis ravi de vous retrouver aujourd'hui pour faire le point sur nos avancées du troisième trimestre. Comme vous le savez, cette année a été marquée par de nombreux défis, mais aussi par des opportunités exceptionnelles que nous avons su saisir.
+                    </p>
+<p class="mb-4">
+                        Tout d'abord, parlons des résultats financiers. Je suis extrêmement fier de vous annoncer que nous avons dépassé nos objectifs initiaux de 15%. Cette croissance est principalement portée par le succès de notre nouvelle plateforme de services cloud, qui a rencontré un accueil très favorable auprès de nos clients grands comptes. C'est le fruit d'un travail acharné de toutes les équipes, et je tiens à vous en remercier chaleureusement.
+                    </p>
+<p class="mb-4">
+                        Cependant, nous ne devons pas nous reposer sur nos lauriers. Le marché évolue vite, et nos concurrents sont agressifs. Pour le prochain trimestre, notre priorité absolue sera l'intégration des nouvelles fonctionnalités d'intelligence artificielle dans nos produits phares. Nous devons maintenir notre avance technologique.
+                    </p>
+<p>
+                        Enfin, concernant le volet ressources humaines, nous prévoyons de recruter une cinquantaine de nouveaux talents d'ici la fin de l'année, principalement sur des profils techniques et data. Nous voulons continuer à investir dans l'humain, qui reste notre principal moteur d'innovation. Merci à tous pour votre attention, nous allons maintenant passer aux questions.
+                    </p>
+</div>
+</div>
+</div>
+</main>
+</body></html>
+
+<!-- Résultat de la transcription -->
+<!DOCTYPE html>
+
+<html class="dark" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>WhisperLocal - Historique</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600&amp;family=Inter:wght@400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed": "#e1e0ff",
+                      "on-secondary-fixed-variant": "#3c475a",
+                      "on-secondary-container": "#aeb9d0",
+                      "on-error": "#690005",
+                      "on-secondary": "#263143",
+                      "surface-variant": "#2d3449",
+                      "bg-base": "#020617",
+                      "surface-card": "#0F172A",
+                      "tertiary-container": "#8083ff",
+                      "on-surface-variant": "#c2c6d6",
+                      "primary": "#adc6ff",
+                      "on-primary-fixed": "#001a42",
+                      "on-surface": "#dae2fd",
+                      "inverse-on-surface": "#283044",
+                      "inverse-surface": "#dae2fd",
+                      "surface": "#0b1326",
+                      "secondary-container": "#3e495d",
+                      "on-background": "#dae2fd",
+                      "surface-container-lowest": "#060e20",
+                      "primary-container": "#4d8eff",
+                      "surface-elevated": "#1E293B",
+                      "on-tertiary-fixed": "#07006c",
+                      "error": "#ffb4ab",
+                      "on-primary-container": "#00285d",
+                      "on-tertiary-container": "#0d0096",
+                      "surface-dim": "#0b1326",
+                      "on-primary-fixed-variant": "#004395",
+                      "surface-container-low": "#131b2e",
+                      "secondary-fixed": "#d8e3fb",
+                      "tertiary-fixed-dim": "#c0c1ff",
+                      "tertiary": "#c0c1ff",
+                      "status-done": "#10B981",
+                      "status-failed": "#F97316",
+                      "status-processing": "#3B82F6",
+                      "outline": "#8c909f",
+                      "error-container": "#93000a",
+                      "outline-variant": "#424754",
+                      "surface-bright": "#31394d",
+                      "primary-fixed-dim": "#adc6ff",
+                      "status-pending": "#64748B",
+                      "on-secondary-fixed": "#111c2d",
+                      "on-error-container": "#ffdad6",
+                      "primary-fixed": "#d8e2ff",
+                      "surface-container-highest": "#2d3449",
+                      "secondary": "#bcc7de",
+                      "surface-container-high": "#222a3d",
+                      "on-tertiary": "#1000a9",
+                      "waveform-stroke": "#1E293B",
+                      "on-tertiary-fixed-variant": "#2f2ebe",
+                      "on-primary": "#002e6a",
+                      "surface-container": "#171f33",
+                      "secondary-fixed-dim": "#bcc7de",
+                      "background": "#0b1326",
+                      "inverse-primary": "#005ac2",
+                      "surface-tint": "#adc6ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "stack-lg": "32px",
+                      "margin": "40px",
+                      "stack-md": "16px",
+                      "stack-sm": "8px",
+                      "container-max": "1200px"
+              },
+              "fontFamily": {
+                      "headline-md": ["IBM Plex Sans"],
+                      "body-md": ["Inter"],
+                      "label-sm": ["JetBrains Mono"],
+                      "code": ["JetBrains Mono"],
+                      "label-md": ["JetBrains Mono"],
+                      "body-lg": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "headline-lg": ["IBM Plex Sans"],
+                      "headline-sm": ["IBM Plex Sans"]
+              },
+              "fontSize": {
+                      "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                      "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                      "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                      "code": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+                      "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                      "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                      "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                      "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                      "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "500" }]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.bg-base');
+            color: theme('colors.on-surface');
+        }
+        
+        /* Pulse Animation for Processing Badge */
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+            70% { box-shadow: 0 0 0 4px rgba(59, 130, 246, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+        .animate-pulse-border {
+            animation: pulse-border 2s infinite;
+            border-color: theme('colors.status-processing');
+        }
+
+        /* Subtle Waveform Background Pattern */
+        .bg-waveform {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 30 Q15 10 20 30 T30 30 T40 30 T50 30' stroke='%231E293B' stroke-width='1' fill='none' opacity='0.1'/%3E%3C/svg%3E");
+            background-size: 60px 60px;
+        }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden font-body-md text-body-md bg-waveform">
+<!-- JSON: SideNavBar (Strict implementation) -->
+<nav class="flex flex-col h-screen p-stack-md bg-surface border-r border-outline-variant w-64 shrink-0 font-label-md text-label-md z-10">
+<!-- Header -->
+<div class="flex items-center gap-3 mb-stack-lg px-2">
+<div class="w-8 h-8 rounded bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" data-icon="graphic_eq" style="font-variation-settings: 'FILL' 1;">graphic_eq</span>
+</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">WhisperLocal</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Local Transcription</p>
+</div>
+</div>
+<!-- CTA -->
+<button class="w-full bg-primary text-on-primary py-2 px-4 rounded font-label-md text-label-md hover:opacity-90 transition-opacity mb-stack-md flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+            New Transcription
+        </button>
+<!-- Main Navigation -->
+<div class="flex flex-col gap-1 flex-1">
+<!-- Inactive Tab 1 -->
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="mic">mic</span>
+                Transcribe
+            </a>
+<!-- Active Tab 2: History (Determined by Intent) -->
+<a class="flex items-center gap-3 px-3 py-2 bg-secondary-container text-on-secondary-container rounded-xl transition-transform active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+                History
+            </a>
+</div>
+<!-- Footer Navigation -->
+<div class="flex flex-col gap-1 pt-stack-md border-t border-outline-variant">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Settings
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+                Docs
+            </a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col overflow-y-auto p-margin relative">
+<header class="w-full max-w-container-max mx-auto mb-stack-lg flex items-end justify-between">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Historique</h2>
+<p class="text-on-surface-variant mt-1">Gérez vos transcriptions locales terminées et en cours.</p>
+</div>
+<!-- Contextual Action (Secondary) -->
+<button class="border border-surface-elevated text-on-surface hover:border-primary transition-colors py-2 px-4 rounded font-label-md text-label-md flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="filter_list">filter_list</span>
+                Filtrer
+            </button>
+</header>
+<!-- HistoryList Container -->
+<div class="w-full max-w-container-max mx-auto bg-surface-card border border-surface-elevated rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.2)] overflow-hidden">
+<!-- Table Header -->
+<div class="grid grid-cols-[2fr_1fr_1fr_1fr_auto] gap-4 px-6 py-4 border-b border-surface-elevated bg-surface-dim font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
+<div>Nom du fichier</div>
+<div>Statut</div>
+<div>Modèle</div>
+<div>Date</div>
+<div class="text-right">Actions</div>
+</div>
+<!-- Table Body -->
+<div class="flex flex-col">
+<!-- Row: DONE -->
+<div class="grid grid-cols-[2fr_1fr_1fr_1fr_auto] gap-4 px-6 py-4 items-center border-b border-surface-elevated hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-3 font-code text-code text-on-surface">
+<span class="material-symbols-outlined text-status-done text-[20px]" data-icon="audio_file">audio_file</span>
+                        interview_ceo_q3.wav
+                    </div>
+<div>
+<span class="inline-flex items-center px-2 py-1 rounded bg-[#10B981]/10 text-status-done font-label-sm text-label-sm border border-[#10B981]/20">
+                            Terminé
+                        </span>
+</div>
+<div class="font-code text-code text-on-surface-variant">large-v3</div>
+<div class="text-on-surface-variant font-body-sm">24 Oct 2023</div>
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors rounded hover:bg-surface-variant" title="Ouvrir le texte">
+<span class="material-symbols-outlined text-[20px]" data-icon="description">description</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-error transition-colors rounded hover:bg-error-container/20" title="Supprimer">
+<span class="material-symbols-outlined text-[20px]" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+<!-- Row: PROCESSING / PENDING -->
+<div class="grid grid-cols-[2fr_1fr_1fr_1fr_auto] gap-4 px-6 py-4 items-center border-b border-surface-elevated hover:bg-surface-container-low transition-colors group bg-primary/5">
+<div class="flex items-center gap-3 font-code text-code text-on-surface">
+<span class="material-symbols-outlined text-status-processing text-[20px] animate-spin" data-icon="sync" style="animation-duration: 3s;">sync</span>
+                        dev_standup_weekly.m4a
+                    </div>
+<div>
+<!-- Glowing Pulse Badge -->
+<span class="inline-flex items-center px-2 py-1 rounded bg-[#3B82F6]/10 text-status-processing font-label-sm text-label-sm border-2 animate-pulse-border">
+                            En cours (45%)
+                        </span>
+</div>
+<div class="font-code text-code text-on-surface-variant">medium.en</div>
+<div class="text-on-surface-variant font-body-sm">Aujourd'hui, 10:42</div>
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 text-on-surface-variant hover:text-error transition-colors rounded hover:bg-error-container/20" title="Annuler">
+<span class="material-symbols-outlined text-[20px]" data-icon="cancel">cancel</span>
+</button>
+</div>
+</div>
+<!-- Row: DONE -->
+<div class="grid grid-cols-[2fr_1fr_1fr_1fr_auto] gap-4 px-6 py-4 items-center border-b border-surface-elevated hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-3 font-code text-code text-on-surface">
+<span class="material-symbols-outlined text-status-done text-[20px]" data-icon="audio_file">audio_file</span>
+                        podcast_ep12_raw.mp3
+                    </div>
+<div>
+<span class="inline-flex items-center px-2 py-1 rounded bg-[#10B981]/10 text-status-done font-label-sm text-label-sm border border-[#10B981]/20">
+                            Terminé
+                        </span>
+</div>
+<div class="font-code text-code text-on-surface-variant">base</div>
+<div class="text-on-surface-variant font-body-sm">22 Oct 2023</div>
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors rounded hover:bg-surface-variant" title="Ouvrir le texte">
+<span class="material-symbols-outlined text-[20px]" data-icon="description">description</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-error transition-colors rounded hover:bg-error-container/20" title="Supprimer">
+<span class="material-symbols-outlined text-[20px]" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+<!-- Row: FAILED -->
+<div class="flex flex-col border-b border-surface-elevated hover:bg-surface-container-low transition-colors group">
+<div class="grid grid-cols-[2fr_1fr_1fr_1fr_auto] gap-4 px-6 py-4 items-center">
+<div class="flex items-center gap-3 font-code text-code text-on-surface">
+<span class="material-symbols-outlined text-status-failed text-[20px]" data-icon="error">error</span>
+                            corrupted_voice_memo.ogg
+                        </div>
+<div>
+<span class="inline-flex items-center px-2 py-1 rounded bg-[#F97316]/10 text-status-failed font-label-sm text-label-sm border border-[#F97316]/20">
+                                Échec
+                            </span>
+</div>
+<div class="font-code text-code text-on-surface-variant">large-v3</div>
+<div class="text-on-surface-variant font-body-sm">20 Oct 2023</div>
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors rounded hover:bg-surface-variant" title="Réessayer">
+<span class="material-symbols-outlined text-[20px]" data-icon="refresh">refresh</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-error transition-colors rounded hover:bg-error-container/20" title="Supprimer">
+<span class="material-symbols-outlined text-[20px]" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+<!-- Error Message Expansion -->
+<div class="px-6 pb-4 pt-1 ml-9">
+<p class="font-code text-code text-status-failed bg-[#F97316]/5 p-2 rounded border border-[#F97316]/20 inline-block">
+                            RuntimeError: Format audio non pris en charge ou fichier corrompu (FFmpeg error).
+                        </p>
+</div>
+</div>
+</div>
+<!-- Table Footer / Pagination -->
+<div class="px-6 py-4 border-t border-surface-elevated flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm bg-surface-dim">
+<span>Affichage 1-4 sur 24 transcriptions</span>
+<div class="flex gap-2">
+<button class="p-1 border border-outline-variant rounded hover:text-on-surface hover:border-surface-elevated disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[18px]" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="p-1 border border-outline-variant rounded hover:text-on-surface hover:border-surface-elevated">
+<span class="material-symbols-outlined text-[18px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

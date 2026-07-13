@@ -1,0 +1,25 @@
+# Dépendances
+node_modules/
+
+# Build
+dist/
+
+# Environnement
+.env
+.env.local
+
+# Fichiers temporaires audio / whisper
+tmp/
+uploads/
+*.wav
+
+# Logs
+*.log
+npm-debug.log*
+
+# IDE
+.vscode/
+.idea/
+
+# Coverage
+coverage/

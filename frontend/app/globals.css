@@ -1,0 +1,92 @@
+@import "tailwindcss";
+@config "../tailwind.config.ts";
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  background-color: theme("colors.bg-base");
+  color: theme("colors.on-surface");
+}
+
+/* Zone de dépôt de fichier (UploadForm) */
+.upload-dashed {
+  border: 2px dashed #1e293b;
+  transition: all 0.2s ease;
+}
+.upload-dashed:hover,
+.upload-dashed.upload-dashed-active {
+  border-color: #3b82f6;
+  background-color: rgba(59, 130, 246, 0.05);
+}
+
+/* Motif de fond "waveform" discret, repris des maquettes */
+.bg-waveform {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 30 Q15 10 20 30 T30 30 T40 30 T50 30' stroke='%231E293B' stroke-width='1' fill='none' opacity='0.1'/%3E%3C/svg%3E");
+  background-size: 60px 60px;
+}
+
+/* Badge de statut "processing" avec halo pulsé */
+@keyframes pulse-border {
+  0% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+  }
+}
+.animate-pulse-border {
+  animation: pulse-border 2s infinite;
+  border-color: theme("colors.status-processing");
+}
+
+@keyframes border-glow {
+  0% {
+    border-color: rgba(59, 130, 246, 0.4);
+    box-shadow: 0 0 8px rgba(59, 130, 246, 0.1);
+  }
+  100% {
+    border-color: rgba(59, 130, 246, 1);
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+  }
+}
+.glowing-border {
+  box-shadow: 0 0 12px 2px rgba(59, 130, 246, 0.2);
+  animation: border-glow 2s infinite alternate;
+}
+
+/* Barres de la visualisation waveform (ProcessingView) */
+.waveform-bar {
+  width: 4px;
+  background-color: theme("colors.primary-container");
+  border-radius: 2px;
+  animation: pulse-wave 1s infinite ease-in-out alternate;
+}
+@keyframes pulse-wave {
+  0% {
+    transform: scaleY(0.2);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #020617;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3b82f6;
+}
