@@ -3,10 +3,10 @@
 Application web personnelle de transcription audio → texte, exécutée
 **entièrement en local** via [whisper.cpp](https://github.com/ggerganov/whisper.cpp).
 Aucun service cloud payant, aucune clé API : le seul coût est le temps
-de calcul de ta propre machine.
+de calcul de votre propre machine.
 
 Usage mono-utilisateur, sans authentification. Distribué en open-source
-— si tu clones ce repo, tu fais tourner ta propre instance isolée.
+— si vous clonez ce repo, vous faites tourner votre propre instance isolée.
 
 ![Démo Speech To Text Local](assets/demo.gif)
 
@@ -25,7 +25,7 @@ C'est la méthode recommandée — voir [Démarrage rapide](#démarrage-rapide).
 
 whisper.cpp n'est **pas embarqué** dans l'image Docker de l'API (pour
 garder l'image légère et parce que le binaire dépend de l'architecture
-CPU de ta machine — AVX2, ARM NEON, etc.). Tu dois le compiler toi-même :
+CPU de votre machine — AVX2, ARM NEON, etc.). Vous devez le compiler vous-même :
 
 ```bash
 git clone https://github.com/ggerganov/whisper.cpp
@@ -49,7 +49,7 @@ whisper-bin/
 ### 3. Modèle Whisper — `medium` (requis)
 
 Un seul modèle est **requis** pour un premier lancement fonctionnel :
-`medium`. Télécharge-le avec le script fourni par whisper.cpp :
+`medium`. Téléchargez-le avec le script fourni par whisper.cpp :
 
 ```bash
 cd whisper.cpp
@@ -68,8 +68,8 @@ models/
 
 Ces modèles ne sont **pas** téléchargés par défaut (le modèle `large`
 pèse plusieurs Go — inutile d'alourdir le setup initial pour rien). Si
-tu veux les proposer dans le sélecteur de modèle du frontend, télécharge-
-les à la demande de la même façon et dépose-les dans `./models/` :
+vous voulez les proposer dans le sélecteur de modèle du frontend, téléchargez-
+les à la demande de la même façon et déposez-les dans `./models/` :
 
 ```bash
 bash ./models/download-ggml-model.sh base
@@ -79,8 +79,8 @@ bash ./models/download-ggml-model.sh large-v3
 
 > Le fichier `ggml-large.bin` n'existe pas tel quel sur le dépôt officiel
 > des modèles — seules des versions numérotées existent (`large-v1/v2/v3`).
-> Le script `download-ggml-model.sh` gère cet alias automatiquement ; si tu
-> télécharges manuellement, renomme le fichier obtenu (`ggml-large-v3.bin`)
+> Le script `download-ggml-model.sh` gère cet alias automatiquement ; si vous
+> téléchargez manuellement, renommez le fichier obtenu (`ggml-large-v3.bin`)
 > en `ggml-large.bin` pour qu'il corresponde au nom attendu
 > (`ggml-${model}.bin`, où `model` = valeur du sélecteur frontend, ex.
 > `large`).
@@ -101,7 +101,7 @@ fonctionnement de base : si le service de diarisation est absent,
 indisponible ou en erreur, la transcription texte classique se déroule
 normalement — seule l'info de locuteur est absente du résultat.
 
-### Prérequis (uniquement si tu veux utiliser la diarisation)
+### Prérequis (uniquement si vous voulez utiliser la diarisation)
 
 1. Un compte [Hugging Face](https://huggingface.co/) et un [token
    d'accès](https://huggingface.co/settings/tokens) (lecture suffit).
@@ -133,7 +133,7 @@ service `diarization`.
   reste `DONE` avec le texte transcrit, `speakerSegments` reste `null`.
   Aucune erreur n'est remontée à l'utilisateur pour ce seul motif.
 
-Sans `HF_TOKEN` configuré, tu peux ignorer entièrement cette section —
+Sans `HF_TOKEN` configuré, vous pouvez ignorer entièrement cette section —
 le reste de l'application fonctionne à l'identique.
 
 ---
@@ -141,8 +141,8 @@ le reste de l'application fonctionne à l'identique.
 ## Démarrage rapide
 
 ```bash
-git clone <url-du-repo>
-cd Speech To Text Local_Web
+git clone https://github.com/Tiene1/SpeechToTextLocal.git
+cd SpeechToTextLocal
 
 # 1. Placer le binaire whisper.cpp dans ./whisper-bin/
 # 2. Placer ggml-medium.bin dans ./models/
@@ -159,7 +159,7 @@ Au démarrage du conteneur `api`, le schéma de base de données est
 synchronisé automatiquement (`prisma db push`) — pas d'étape de
 migration manuelle nécessaire pour un premier lancement.
 
-**Pour tester rapidement** sans préparer ton propre fichier audio, un
+**Pour tester rapidement** sans préparer votre propre fichier audio, un
 échantillon d'1 minute (domaine public) est fourni dans
 [`samples/`](samples/) — dépose-le simplement dans l'interface d'upload.
 
@@ -181,7 +181,7 @@ jamais via `localhost`).
 \* Le port hôte de l'API a été remappé de `3000` à `3010` (au lieu du
 port par défaut) pour éviter un conflit avec un autre service déjà
 présent sur la machine de développement — purement local à cet
-environnement, adapte `docker-compose.yml` si `3000` est libre chez toi.
+environnement, adaptez `docker-compose.yml` si `3000` est libre chez vous.
 
 **Volumes**
 
@@ -189,8 +189,8 @@ environnement, adapte `docker-compose.yml` si `3000` est libre chez toi.
 |---|---|---|---|
 | `postgres_data` | Nommé (Docker) | Données PostgreSQL | Oui |
 | `uploads_tmp` | Nommé (Docker) | Fichiers audio temporaires (WAV convertis), partagé en lecture seule avec `diarization` | Non nécessaire (fichiers de travail, nettoyés par l'app) |
-| `./whisper-bin` | Bind mount (hôte), lecture seule | Binaire whisper.cpp compilé sur l'hôte | N/A (fourni par toi, cf. prérequis) |
-| `./models` | Bind mount (hôte), lecture seule | Modèles ggml Whisper | N/A (fourni par toi, cf. prérequis) |
+| `./whisper-bin` | Bind mount (hôte), lecture seule | Binaire whisper.cpp compilé sur l'hôte | N/A (fourni par vous, cf. prérequis) |
+| `./models` | Bind mount (hôte), lecture seule | Modèles ggml Whisper | N/A (fourni par vous, cf. prérequis) |
 
 **Variables d'environnement racine** (fichier `.env` à la racine, lu
 automatiquement par Docker Compose — voir `.env.example`) :
@@ -201,7 +201,7 @@ automatiquement par Docker Compose — voir `.env.example`) :
 
 ## Développement local (sans Docker pour l'API)
 
-Utile si tu modifies le code backend fréquemment.
+Utile si vous modifiez le code backend fréquemment.
 
 ```bash
 cd backend
