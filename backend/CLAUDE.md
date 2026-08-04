@@ -1,8 +1,8 @@
-# CLAUDE.md — Backend WhisperLocal API
+# CLAUDE.md — Backend Speech To Text Local API
 
 ## Contexte
 
-Tu travailles sur le backend de **WhisperLocal**, une application web
+Tu travailles sur le backend de **Speech To Text Local**, une application web
 personnelle qui transcrit des fichiers audio en texte via whisper.cpp en
 local. Usage mono-utilisateur, pas d'authentification.
 

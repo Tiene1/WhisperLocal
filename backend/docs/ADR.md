@@ -1,6 +1,6 @@
 ═══════════════════════════════════════════════════════════
   FICHE DE DÉCISION D'ARCHITECTURE
-  Projet : WhisperLocal
+  Projet : Speech To Text Local
   Date   : 11 juillet 2026
   Auteur : Cédric Tiene
 ═══════════════════════════════════════════════════════════
@@ -20,7 +20,7 @@ signalées.
 ## 1. RÉSUMÉ DU PROJET
 
 **Description**
-WhisperLocal est une application web qui permet à un utilisateur d'uploader
+Speech To Text Local est une application web qui permet à un utilisateur d'uploader
 des fichiers audio et d'obtenir leur transcription texte via Whisper
 (whisper.cpp) exécuté localement, avec choix du modèle et de la langue,
 afin d'éviter les coûts des plateformes de transcription payantes.

@@ -1,5 +1,5 @@
 /**
- * Domaine — WhisperLocal
+ * Domaine — Speech To Text Local
  *
  * Entité pure, sans dépendance à Prisma ni à NestJS (`@nestjs/common`),
  * conformément aux règles absolues de CLAUDE.md.

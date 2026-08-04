@@ -29,7 +29,7 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
       cache: "no-store",
     });
   } catch {
-    throw new ApiError("Impossible de joindre l'API WhisperLocal. Vérifiez que le backend est démarré.", 0);
+    throw new ApiError("Impossible de joindre l'API Speech To Text Local. Vérifiez que le backend est démarré.", 0);
   }
 
   if (!res.ok) {

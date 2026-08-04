@@ -1,4 +1,4 @@
-# WhisperLocal
+# Speech To Text Local
 
 Application web personnelle de transcription audio → texte, exécutée
 **entièrement en local** via [whisper.cpp](https://github.com/ggerganov/whisper.cpp).
@@ -8,9 +8,9 @@ de calcul de ta propre machine.
 Usage mono-utilisateur, sans authentification. Distribué en open-source
 — si tu clones ce repo, tu fais tourner ta propre instance isolée.
 
-![Démo WhisperLocal](assets/demo.gif)
+![Démo Speech To Text Local](assets/demo.gif)
 
-*Conteneurs Docker → transcription WhisperLocal → comparaison avec
+*Conteneurs Docker → transcription Speech To Text Local → comparaison avec
 TurboScribe (plateforme commerciale).*
 
 ---
@@ -93,7 +93,7 @@ conservé pour un nouvel essai).
 
 ## Diarisation (optionnelle)
 
-WhisperLocal peut identifier **qui parle** dans un audio multi-locuteurs,
+Speech To Text Local peut identifier **qui parle** dans un audio multi-locuteurs,
 via [pyannote.audio](https://github.com/pyannote/pyannote-audio), exécuté
 dans un service Python séparé (`diarization/`). C'est une fonctionnalité
 **opt-in** (case à cocher à l'upload) qui **n'affecte jamais** le
@@ -142,7 +142,7 @@ le reste de l'application fonctionne à l'identique.
 
 ```bash
 git clone <url-du-repo>
-cd WhisperLocal_Web
+cd Speech To Text Local_Web
 
 # 1. Placer le binaire whisper.cpp dans ./whisper-bin/
 # 2. Placer ggml-medium.bin dans ./models/

@@ -1,4 +1,4 @@
-# Architecture Backend — WhisperLocal API
+# Architecture Backend — Speech To Text Local API
 
 > Pattern : Architecture en Couches (voir `docs/ADR.md` section 3)
 > Révision 2 : intègre sélection modèle/langue, annulation, progression,

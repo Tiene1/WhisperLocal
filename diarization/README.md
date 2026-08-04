@@ -1,4 +1,4 @@
-# Service de diarisation — WhisperLocal
+# Service de diarisation — Speech To Text Local
 
 Service Python indépendant qui identifie **qui parle** dans un audio
 multi-locuteurs, via [pyannote.audio](https://github.com/pyannote/pyannote-audio).

@@ -1,7 +1,7 @@
 import JobStatusPoller from "@/app/components/JobStatusPoller";
 
 export const metadata = {
-  title: "Job - WhisperLocal",
+  title: "Job - Speech To Text Local",
 };
 
 interface JobPageProps {

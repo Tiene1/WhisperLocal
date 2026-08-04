@@ -1,7 +1,7 @@
 import HistoryList from "@/app/components/HistoryList";
 
 export const metadata = {
-  title: "Historique - WhisperLocal",
+  title: "Historique - Speech To Text Local",
 };
 
 export default function HistoryPage() {

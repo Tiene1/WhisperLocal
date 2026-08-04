@@ -1,8 +1,8 @@
-# CLAUDE.md — Frontend WhisperLocal Web
+# CLAUDE.md — Frontend Speech To Text Local Web
 
 ## Contexte
 
-Tu travailles sur le frontend de **WhisperLocal**. Usage mono-utilisateur,
+Tu travailles sur le frontend de **Speech To Text Local**. Usage mono-utilisateur,
 pas d'authentification, pas de session à gérer.
 
 Lis `docs/ADR.md` et `docs/architecture.md` avant de commencer — la

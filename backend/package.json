@@ -1,7 +1,7 @@
 {
-  "name": "whisperlocal-backend",
+  "name": "speechtotextlocal-backend",
   "version": "0.1.0",
-  "description": "API backend WhisperLocal — transcription audio locale via whisper.cpp",
+  "description": "API backend Speech To Text Local — transcription audio locale via whisper.cpp",
   "license": "MIT",
   "private": true,
   "scripts": {

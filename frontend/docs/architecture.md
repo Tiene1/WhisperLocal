@@ -1,4 +1,4 @@
-# Architecture Frontend — WhisperLocal Web
+# Architecture Frontend — Speech To Text Local Web
 
 > Révision 2 : intègre les 4 écrans des maquettes UI/UX validées
 > (Upload, Traitement, Résultat, Historique) et les nouvelles features
