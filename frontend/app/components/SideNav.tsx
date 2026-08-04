@@ -4,8 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const NAV_ITEMS = [
-  { href: "/", label: "Transcribe", icon: "mic" },
-  { href: "/history", label: "History", icon: "history" },
+  { href: "/", label: "Transcrire", icon: "mic" },
+  { href: "/history", label: "Historique", icon: "history" },
 ];
 
 /** Navigation latérale partagée entre les 3 écrans (Upload/Job/Historique).
@@ -24,7 +24,7 @@ export default function SideNav() {
         </div>
         <div>
           <h1 className="font-headline-sm text-headline-sm font-bold text-primary tracking-tight">Speech To Text Local</h1>
-          <p className="font-label-sm text-label-sm text-on-surface-variant">Local Transcription</p>
+          <p className="font-label-sm text-label-sm text-on-surface-variant">Transcription Locale</p>
         </div>
       </div>
 
@@ -33,7 +33,7 @@ export default function SideNav() {
         className="w-full bg-primary-container text-on-primary-container py-3 px-4 rounded-lg font-label-md text-label-md font-medium mb-stack-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
       >
         <span className="material-symbols-outlined">add</span>
-        New Transcription
+        Nouvelle Transcription
       </Link>
 
       <nav className="flex-1 space-y-2">
@@ -61,7 +61,7 @@ export default function SideNav() {
       <div className="mt-auto space-y-2 pt-4 border-t border-surface-elevated">
         <span className="flex items-center gap-3 px-4 py-3 text-on-surface-variant/50 rounded-xl font-label-md text-label-md cursor-not-allowed">
           <span className="material-symbols-outlined">settings</span>
-          Settings
+          Paramètres
         </span>
       </div>
     </aside>

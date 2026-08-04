@@ -126,7 +126,7 @@ export default function ProcessingView({ job, onCancel, isCancelling }: Processi
             disabled={isCancelling}
             className="px-4 py-2 font-code text-code text-error border border-error/30 rounded hover:bg-error/10 transition-colors disabled:opacity-50"
           >
-            {isCancelling ? "Annulation..." : "Cancel Job"}
+            {isCancelling ? "Annulation..." : "Annuler le job"}
           </button>
         </div>
       )}

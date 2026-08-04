@@ -9,25 +9,25 @@ vi.mock("next/navigation", () => ({
 }));
 
 describe("SideNav", () => {
-  it("met en avant l'onglet Transcribe sur la page d'accueil", () => {
+  it("met en avant l'onglet Transcrire sur la page d'accueil", () => {
     usePathnameMock.mockReturnValue("/");
     render(<SideNav />);
 
-    const transcribeLink = screen.getByRole("link", { name: /transcribe/i });
+    const transcribeLink = screen.getByRole("link", { name: /transcrire/i });
     expect(transcribeLink.className).toContain("bg-secondary-container");
   });
 
-  it("met en avant l'onglet History sur /history", () => {
+  it("met en avant l'onglet Historique sur /history", () => {
     usePathnameMock.mockReturnValue("/history");
     render(<SideNav />);
 
-    const historyLink = screen.getByRole("link", { name: /history/i });
+    const historyLink = screen.getByRole("link", { name: /historique/i });
     expect(historyLink.className).toContain("bg-secondary-container");
   });
 
-  it("affiche le lien 'New Transcription'", () => {
+  it("affiche le lien 'Nouvelle Transcription'", () => {
     usePathnameMock.mockReturnValue("/");
     render(<SideNav />);
-    expect(screen.getByRole("link", { name: /new transcription/i })).toHaveAttribute("href", "/");
+    expect(screen.getByRole("link", { name: /nouvelle transcription/i })).toHaveAttribute("href", "/");
   });
 });

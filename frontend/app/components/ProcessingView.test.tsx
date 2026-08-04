@@ -46,10 +46,10 @@ describe("ProcessingView", () => {
     const { rerender } = render(
       <ProcessingView job={buildJob({ status: "PENDING" })} onCancel={vi.fn()} isCancelling={false} />,
     );
-    expect(screen.getByRole("button", { name: /cancel job/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /annuler le job/i })).toBeInTheDocument();
 
     rerender(<ProcessingView job={buildJob({ status: "PROCESSING" })} onCancel={vi.fn()} isCancelling={false} />);
-    expect(screen.getByRole("button", { name: /cancel job/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /annuler le job/i })).toBeInTheDocument();
   });
 
   it("appelle onCancel au clic sur le bouton Annuler", async () => {
@@ -57,7 +57,7 @@ describe("ProcessingView", () => {
     const user = userEvent.setup();
     render(<ProcessingView job={buildJob({ status: "PROCESSING" })} onCancel={onCancel} isCancelling={false} />);
 
-    await user.click(screen.getByRole("button", { name: /cancel job/i }));
+    await user.click(screen.getByRole("button", { name: /annuler le job/i }));
     expect(onCancel).toHaveBeenCalledTimes(1);
   });
 
