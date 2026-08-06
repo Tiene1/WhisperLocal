@@ -4,7 +4,7 @@ const PORT = 3100;
 const BASE_URL = `http://localhost:${PORT}`;
 
 /**
- * Configuration Playwright — tests E2E du frontend Speech To Text Local.
+ * Configuration Playwright — tests E2E du frontend WhisperLocal.
  *
  * Toutes les requêtes vers l'API NestJS sont interceptées avec
  * `page.route()` (cf. e2e/mocks.ts) : aucun backend réel ni whisper.cpp

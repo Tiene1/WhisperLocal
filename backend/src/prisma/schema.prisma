@@ -1,4 +1,4 @@
-// Schéma Prisma — Speech To Text Local
+// Schéma Prisma — WhisperLocal
 // Voir docs/architecture.md pour le contrat exact de ce modèle.
 
 generator client {

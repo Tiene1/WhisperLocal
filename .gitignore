@@ -27,7 +27,7 @@ frontend/test-results/
 # Documents de contexte initiaux (ADR/architecture bruts, maquettes HTML)
 # fournis en amont du développement — déjà intégrés proprement dans
 # backend/docs/ et frontend/docs/, redondants dans l'historique git.
-# (Note : Speech To Text Local Web.drawio est volontairement gardé et
+# (Note : WhisperLocal Web.drawio est volontairement gardé et
 # versionné — schémas C4 utiles pour comprendre l'architecture visuellement.)
 /files/
 /Code Source HTML WhisperLocal.txt

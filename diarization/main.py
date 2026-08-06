@@ -1,4 +1,4 @@
-"""Service de diarisation (identification des locuteurs) — Speech To Text Local.
+"""Service de diarisation (identification des locuteurs) — WhisperLocal.
 
 Service Python séparé (FastAPI + pyannote.audio), volontairement isolé de
 l'API NestJS pour ne pas embarquer PyTorch dans son image (cf. ADR
@@ -29,7 +29,7 @@ logger = logging.getLogger("diarization")
 HF_TOKEN = os.environ.get("HF_TOKEN")
 PIPELINE_NAME = "pyannote/speaker-diarization-3.1"
 
-app = FastAPI(title="Speech To Text Local — Service de diarisation")
+app = FastAPI(title="WhisperLocal — Service de diarisation")
 
 # Chargé une seule fois au démarrage du service (pas à chaque requête) —
 # cf. mission section 1. `None` tant que le chargement n'a pas réussi ou

@@ -1,6 +1,6 @@
 # Échantillons audio de test
 
-Fichiers audio courts fournis pour tester rapidement Speech To Text Local après
+Fichiers audio courts fournis pour tester rapidement WhisperLocal après
 installation, sans avoir à chercher/préparer ton propre fichier.
 
 ## `apollo11-sample-1min.mp3`

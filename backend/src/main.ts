@@ -20,7 +20,7 @@ async function bootstrap(): Promise<void> {
 
   const port = Number(process.env.PORT) || 3000;
   await app.listen(port);
-  logger.log(`Speech To Text Local API démarrée sur http://localhost:${port}`);
+  logger.log(`WhisperLocal API démarrée sur http://localhost:${port}`);
 }
 
 void bootstrap();

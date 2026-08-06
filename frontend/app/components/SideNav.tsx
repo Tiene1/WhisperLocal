@@ -23,7 +23,7 @@ export default function SideNav() {
           </span>
         </div>
         <div>
-          <h1 className="font-headline-sm text-headline-sm font-bold text-primary tracking-tight">Speech To Text Local</h1>
+          <h1 className="font-headline-sm text-headline-sm font-bold text-primary tracking-tight">WhisperLocal</h1>
           <p className="font-label-sm text-label-sm text-on-surface-variant">Transcription Locale</p>
         </div>
       </div>

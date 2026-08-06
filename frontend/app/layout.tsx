@@ -22,7 +22,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Speech To Text Local",
+  title: "WhisperLocal",
   description: "Transcription audio locale via whisper.cpp",
 };
 
