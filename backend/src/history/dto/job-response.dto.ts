@@ -23,6 +23,13 @@ export class JobResponseDto {
   diarizationEnabled!: boolean;
   /** `null` tant que la diarisation n'a pas réussi (best-effort, jamais bloquant). */
   speakerSegments!: unknown;
+  /** Ratio de tokens peu fiables (p < seuil) sur l'ensemble de la transcription —
+   *  `null` si le JSON `-ojf` n'a pas pu être lu/parsé (best-effort, cf.
+   *  engine/confidence-analyzer.ts). */
+  lowConfidenceRatio!: number | null;
+  /** Avertissement uniquement (jamais bloquant) : vrai si `lowConfidenceRatio`
+   *  dépasse le seuil configuré. */
+  isLowConfidenceWarning!: boolean;
 
   static fromEntity(job: TranscriptionJob): JobResponseDto {
     const dto = new JobResponseDto();
@@ -42,6 +49,8 @@ export class JobResponseDto {
     dto.completedAt = job.completedAt;
     dto.diarizationEnabled = job.diarizationEnabled;
     dto.speakerSegments = job.speakerSegments;
+    dto.lowConfidenceRatio = job.lowConfidenceRatio;
+    dto.isLowConfidenceWarning = job.isLowConfidenceWarning;
     return dto;
   }
 }
@@ -50,6 +59,10 @@ export class JobResponseDto {
  * DTO de sortie — élément de liste (`GET /jobs`).
  * Volontairement allégé : n'expose pas `resultText`/`resultSrt` qui
  * peuvent être volumineux et sont inutiles dans une vue historique.
+ * `lowConfidenceRatio`/`isLowConfidenceWarning` restent également hors de
+ * cette liste par cohérence avec ce même principe : c'est un indicateur de
+ * qualité du résultat, naturellement consulté avec le résultat lui-même
+ * (`GET /jobs/:id`), pas dans un simple listing.
  */
 export class JobListItemDto {
   id!: string;

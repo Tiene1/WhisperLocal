@@ -71,11 +71,18 @@ export class HistoryRepository {
    * polling dès `DONE` avant que les locuteurs soient prêts (cf. ADR
    * section 11 : la diarisation ne doit jamais bloquer/échouer le job,
    * mais elle doit rester synchrone avec son passage à `DONE`).
+   *
+   * `lowConfidenceRatio`/`isLowConfidenceWarning` sont toujours fournis par
+   * l'appelant (le garde-fou de confiance est best-effort en amont, dans
+   * `WhisperCppProvider` — il retombe déjà sur `0`/`false` en cas d'échec de
+   * lecture du JSON `-ojf`, jamais sur `undefined`).
    */
   markDone(
     id: string,
     resultText: string,
     resultSrt: string,
+    lowConfidenceRatio: number,
+    isLowConfidenceWarning: boolean,
     speakerSegments?: Prisma.InputJsonValue | null,
   ): Promise<TranscriptionJob> {
     return this.prisma.transcriptionJob.update({
@@ -86,6 +93,8 @@ export class HistoryRepository {
         resultSrt,
         progress: 100,
         completedAt: new Date(),
+        lowConfidenceRatio,
+        isLowConfidenceWarning,
         ...(speakerSegments !== undefined
           ? { speakerSegments: speakerSegments ?? Prisma.JsonNull }
           : {}),

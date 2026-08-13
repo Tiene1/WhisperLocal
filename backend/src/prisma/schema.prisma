@@ -28,6 +28,11 @@ model TranscriptionJob {
   resultText      String?
   resultSrt       String?
   errorMessage    String?
+  // Garde-fou préventif sur la confiance (whisper.cpp n'a pas de signal
+  // d'échec structuré type `no_speech_prob`) — cf. engine/confidence-analyzer.ts.
+  // `null` tant que le JSON `-ojf` n'a pas pu être lu/parsé (best-effort).
+  lowConfidenceRatio     Float?   // ratio global de tokens peu fiables (p < seuil), calculé en fin de transcription
+  isLowConfidenceWarning Boolean  @default(false)
   // Diarisation (identification des locuteurs, opt-in) — cf. ADR section 11.
   // `speakerSegments` reste `null` tant que la diarisation n'a pas réussi,
   // même si `diarizationEnabled` est vrai (échec non bloquant du service).

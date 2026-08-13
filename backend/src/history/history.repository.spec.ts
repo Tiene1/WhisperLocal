@@ -108,9 +108,9 @@ describe('HistoryRepository', () => {
     });
   });
 
-  it('markDone() renseigne resultText/resultSrt, progress=100 et completedAt', async () => {
+  it('markDone() renseigne resultText/resultSrt, progress=100, completedAt et l\'indicateur de confiance', async () => {
     prisma.transcriptionJob.update.mockResolvedValue({ id: 'job-1' });
-    await repository.markDone('job-1', 'texte', 'srt');
+    await repository.markDone('job-1', 'texte', 'srt', 0.06, false);
     expect(prisma.transcriptionJob.update).toHaveBeenCalledWith({
       where: { id: 'job-1' },
       data: {
@@ -119,7 +119,21 @@ describe('HistoryRepository', () => {
         resultSrt: 'srt',
         progress: 100,
         completedAt: expect.any(Date),
+        lowConfidenceRatio: 0.06,
+        isLowConfidenceWarning: false,
       },
+    });
+  });
+
+  it("markDone() propage isLowConfidenceWarning=true quand le ratio dépasse le seuil configuré", async () => {
+    prisma.transcriptionJob.update.mockResolvedValue({ id: 'job-1' });
+    await repository.markDone('job-1', 'texte', 'srt', 0.48, true);
+    expect(prisma.transcriptionJob.update).toHaveBeenCalledWith({
+      where: { id: 'job-1' },
+      data: expect.objectContaining({
+        lowConfidenceRatio: 0.48,
+        isLowConfidenceWarning: true,
+      }),
     });
   });
 

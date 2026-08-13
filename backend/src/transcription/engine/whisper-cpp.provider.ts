@@ -6,6 +6,7 @@ import * as path from 'path';
 import whisperConfig from '../../shared/config/whisper.config';
 import { WhisperLanguageCode, WhisperModelName } from '../domain/transcription-job.entity';
 import { JobCancelledError } from '../errors/job-cancelled.error';
+import { analyzeConfidence, ConfidenceAnalysis, WhisperJsonOutput } from './confidence-analyzer';
 import { stripKnownHallucinations, stripKnownHallucinationsFromSrt } from './hallucination-filter';
 
 export interface WhisperTranscribeOptions {
@@ -20,7 +21,16 @@ export interface WhisperTranscribeOptions {
 export interface WhisperTranscribeResult {
   text: string;
   srt: string;
+  /** Ratio de tokens peu fiables (p < seuil) sur l'ensemble de la transcription — cf. `confidence-analyzer.ts`. */
+  lowConfidenceRatio: number;
+  /** Avertissement uniquement (jamais bloquant) : vrai si `lowConfidenceRatio` dépasse le seuil configuré. */
+  isLowConfidenceWarning: boolean;
 }
+
+/** Best-effort, jamais bloquant (même philosophie que la diarisation) : un
+ * JSON `-ojf` absent ou invalide ne fait jamais échouer un job par ailleurs
+ * réussi — seul l'avertissement de confiance est perdu. */
+const NO_CONFIDENCE_WARNING: ConfidenceAnalysis = { lowConfidenceRatio: 0, isLowConfidenceWarning: false };
 
 /** Délai avant repli SIGKILL si SIGTERM n'a pas suffi (cf. ADR Risque 7). */
 const SIGKILL_FALLBACK_DELAY_MS = 3000;
@@ -52,24 +62,26 @@ export class WhisperCppProvider {
     const modelPath = path.join(this.config.modelsDir, `ggml-${model}.bin`);
     const outputBase = wavFilePath.replace(/\.wav$/i, '');
 
-    const args = [
-      '-m',
-      modelPath,
-      '-f',
-      wavFilePath,
-      '-l',
-      language,
-      '-otxt',
-      '-osrt',
-      '-of',
-      outputBase,
-    ];
+    const args = ['-m', modelPath, '-f', wavFilePath, '-l', language];
+
+    // Threads explicitement fournis par l'utilisateur uniquement : jamais de
+    // calcul automatique (cf. whisper.config.ts — os.cpus().length sur-évaluerait
+    // les coeurs disponibles dans un conteneur Docker).
+    if (this.config.threads > 0) {
+      args.push('-t', String(this.config.threads));
+    }
+
+    // -ojf (--output-json-full) : seul moyen d'obtenir un signal de confiance
+    // par token (`p`) avec whisper.cpp, qui n'expose pas `no_speech_prob`
+    // (spécifique au Whisper Python d'OpenAI) — cf. confidence-analyzer.ts.
+    args.push('-otxt', '-osrt', '-ojf', '-of', outputBase);
 
     await this.runWhisperProcess(jobId, args, onProgress);
 
-    const [rawText, rawSrt] = await Promise.all([
+    const [rawText, rawSrt, confidence] = await Promise.all([
       this.readOutputFile(`${outputBase}.txt`),
       this.readOutputFile(`${outputBase}.srt`),
+      this.readConfidenceAnalysis(`${outputBase}.json`),
     ]);
 
     // Whisper hallucine parfois un générique de fin de sous-titrage appris
@@ -78,6 +90,8 @@ export class WhisperCppProvider {
     return {
       text: stripKnownHallucinations(rawText),
       srt: stripKnownHallucinationsFromSrt(rawSrt),
+      lowConfidenceRatio: confidence.lowConfidenceRatio,
+      isLowConfidenceWarning: confidence.isLowConfidenceWarning,
     };
   }
 
@@ -169,6 +183,33 @@ export class WhisperCppProvider {
     } catch (error) {
       this.logger.warn(`Fichier de sortie whisper.cpp introuvable : ${filePath}`);
       return '';
+    }
+  }
+
+  /**
+   * Best-effort, jamais bloquant (même philosophie que la diarisation) :
+   * un JSON `-ojf` absent (déjà géré par `readOutputFile`) ou invalide ne
+   * doit jamais faire échouer un job par ailleurs réussi — seul
+   * l'avertissement de confiance est perdu.
+   */
+  private async readConfidenceAnalysis(jsonFilePath: string): Promise<ConfidenceAnalysis> {
+    const raw = await this.readOutputFile(jsonFilePath);
+    if (!raw) {
+      return NO_CONFIDENCE_WARNING;
+    }
+
+    try {
+      const json = JSON.parse(raw) as WhisperJsonOutput;
+      return analyzeConfidence(
+        json,
+        this.config.lowConfidenceTokenThreshold,
+        this.config.lowConfidenceSegmentRatio,
+      );
+    } catch (error) {
+      this.logger.warn(
+        `JSON de confiance whisper.cpp invalide (${jsonFilePath}), avertissement ignoré : ${(error as Error).message}`,
+      );
+      return NO_CONFIDENCE_WARNING;
     }
   }
 }

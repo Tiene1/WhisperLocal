@@ -22,6 +22,8 @@ function buildJob(overrides: Partial<TranscriptionJob> = {}): TranscriptionJob {
     completedAt: new Date(),
     diarizationEnabled: false,
     speakerSegments: null,
+    lowConfidenceRatio: null,
+    isLowConfidenceWarning: false,
     ...overrides,
   };
 }

@@ -37,6 +37,20 @@ function buildJob(overrides: Partial<TranscriptionJob> = {}): TranscriptionJob {
     completedAt: null,
     diarizationEnabled: false,
     speakerSegments: null,
+    lowConfidenceRatio: null,
+    isLowConfidenceWarning: false,
+    ...overrides,
+  };
+}
+
+/** Résultat par défaut de `WhisperCppProvider.transcribe()` dans les tests
+ * qui n'exercent pas spécifiquement le garde-fou de confiance. */
+function transcribeResult(overrides: Partial<{ text: string; srt: string; lowConfidenceRatio: number; isLowConfidenceWarning: boolean }> = {}) {
+  return {
+    text: 'Bonjour',
+    srt: '1\n...',
+    lowConfidenceRatio: 0,
+    isLowConfidenceWarning: false,
     ...overrides,
   };
 }
@@ -172,13 +186,31 @@ describe('TranscriptionService', () => {
         language: WhisperLanguageCode.FR,
         status: JobStatus.PENDING,
       });
-      whisperCppProvider.transcribe.mockResolvedValue({ text: 'Bonjour', srt: '1\n...' });
+      whisperCppProvider.transcribe.mockResolvedValue(transcribeResult());
 
       await processor(entity);
 
       expect(historyRepository.markProcessing).toHaveBeenCalledWith('job-1');
-      expect(historyRepository.markDone).toHaveBeenCalledWith('job-1', 'Bonjour', '1\n...', null);
+      expect(historyRepository.markDone).toHaveBeenCalledWith('job-1', 'Bonjour', '1\n...', 0, false, null);
       expect(unlink).toHaveBeenCalledWith('/tmp/job-1.wav');
+    });
+
+    it("propage lowConfidenceRatio et isLowConfidenceWarning tels que renvoyés par WhisperCppProvider (avertissement de confiance)", async () => {
+      const processor = getRegisteredProcessor(queue);
+      const entity = new TranscriptionJobEntity({
+        id: 'job-1',
+        wavFilePath: '/tmp/job-1.wav',
+        model: WhisperModelName.MEDIUM,
+        language: WhisperLanguageCode.FR,
+        status: JobStatus.PENDING,
+      });
+      whisperCppProvider.transcribe.mockResolvedValue(
+        transcribeResult({ lowConfidenceRatio: 0.48, isLowConfidenceWarning: true }),
+      );
+
+      await processor(entity);
+
+      expect(historyRepository.markDone).toHaveBeenCalledWith('job-1', 'Bonjour', '1\n...', 0.48, true, null);
     });
 
     it('marque le job FAILED et CONSERVE le WAV en cas d\'échec réel', async () => {
@@ -227,14 +259,14 @@ describe('TranscriptionService', () => {
       historyRepository.updateProgress.mockRejectedValue(new Error('DB indisponible'));
       whisperCppProvider.transcribe.mockImplementation(async ({ onProgress }) => {
         onProgress?.(37);
-        return { text: 'Bonjour', srt: '1\n...' };
+        return transcribeResult();
       });
 
       await expect(processor(entity)).resolves.toBeUndefined();
       // Laisse la microtask du .catch() de updateProgress se résoudre.
       await new Promise((resolve) => setImmediate(resolve));
 
-      expect(historyRepository.markDone).toHaveBeenCalledWith('job-1', 'Bonjour', '1\n...', null);
+      expect(historyRepository.markDone).toHaveBeenCalledWith('job-1', 'Bonjour', '1\n...', 0, false, null);
     });
 
     it('ne lève pas si la suppression du WAV échoue (best-effort, juste loggé)', async () => {
@@ -246,7 +278,7 @@ describe('TranscriptionService', () => {
         language: WhisperLanguageCode.FR,
         status: JobStatus.PENDING,
       });
-      whisperCppProvider.transcribe.mockResolvedValue({ text: 'Bonjour', srt: '1\n...' });
+      whisperCppProvider.transcribe.mockResolvedValue(transcribeResult());
       (unlink as jest.Mock).mockRejectedValueOnce(new Error('EBUSY'));
 
       await expect(processor(entity)).resolves.toBeUndefined();
@@ -262,13 +294,13 @@ describe('TranscriptionService', () => {
         language: WhisperLanguageCode.FR,
         status: JobStatus.PENDING,
       });
-      whisperCppProvider.transcribe.mockResolvedValue({ text: 'Bonjour', srt: '1\n...' });
+      whisperCppProvider.transcribe.mockResolvedValue(transcribeResult());
 
       await processor(entity);
 
       expect(diarizationProvider.diarize).not.toHaveBeenCalled();
       // speakerSegments = null (pas de tentative de diarisation).
-      expect(historyRepository.markDone).toHaveBeenCalledWith('job-1', 'Bonjour', '1\n...', null);
+      expect(historyRepository.markDone).toHaveBeenCalledWith('job-1', 'Bonjour', '1\n...', 0, false, null);
     });
 
     it('appelle le service de diarisation AVANT markDone et lui passe les locuteurs fusionnés (évite la course avec le polling frontend)', async () => {
@@ -282,13 +314,13 @@ describe('TranscriptionService', () => {
         diarizationEnabled: true,
       });
       const srt = '1\n00:00:00,000 --> 00:00:02,000\nBonjour\n';
-      whisperCppProvider.transcribe.mockResolvedValue({ text: 'Bonjour', srt });
+      whisperCppProvider.transcribe.mockResolvedValue(transcribeResult({ srt }));
       diarizationProvider.diarize.mockResolvedValue([{ speaker: 'SPEAKER_00', start: 0, end: 2 }]);
 
       await processor(entity);
 
       expect(diarizationProvider.diarize).toHaveBeenCalledWith('/tmp/job-1.wav');
-      expect(historyRepository.markDone).toHaveBeenCalledWith('job-1', 'Bonjour', srt, [
+      expect(historyRepository.markDone).toHaveBeenCalledWith('job-1', 'Bonjour', srt, 0, false, [
         { speaker: 'SPEAKER_00', start: 0, end: 2, text: 'Bonjour' },
       ]);
       // Le WAV est bien supprimé après la tentative de diarisation, comme pour le flux classique.
@@ -305,12 +337,12 @@ describe('TranscriptionService', () => {
         status: JobStatus.PENDING,
         diarizationEnabled: true,
       });
-      whisperCppProvider.transcribe.mockResolvedValue({ text: 'Bonjour', srt: '1\n...' });
+      whisperCppProvider.transcribe.mockResolvedValue(transcribeResult());
       diarizationProvider.diarize.mockResolvedValue(null);
 
       await expect(processor(entity)).resolves.toBeUndefined();
 
-      expect(historyRepository.markDone).toHaveBeenCalledWith('job-1', 'Bonjour', '1\n...', null);
+      expect(historyRepository.markDone).toHaveBeenCalledWith('job-1', 'Bonjour', '1\n...', 0, false, null);
       expect(historyRepository.markFailed).not.toHaveBeenCalled();
       expect(unlink).toHaveBeenCalledWith('/tmp/job-1.wav');
     });
@@ -329,12 +361,12 @@ describe('TranscriptionService', () => {
       // (SRT valide avec au moins une cue, sinon `.map` sur un tableau vide
       // ne déclencherait jamais l'itération fautive sur `segments`.)
       const srt = '1\n00:00:00,000 --> 00:00:02,000\nBonjour\n';
-      whisperCppProvider.transcribe.mockResolvedValue({ text: 'Bonjour', srt });
+      whisperCppProvider.transcribe.mockResolvedValue(transcribeResult({ srt }));
       diarizationProvider.diarize.mockResolvedValue({} as unknown as never);
 
       await expect(processor(entity)).resolves.toBeUndefined();
 
-      expect(historyRepository.markDone).toHaveBeenCalledWith('job-1', 'Bonjour', srt, null);
+      expect(historyRepository.markDone).toHaveBeenCalledWith('job-1', 'Bonjour', srt, 0, false, null);
       expect(historyRepository.markFailed).not.toHaveBeenCalled();
       expect(unlink).toHaveBeenCalledWith('/tmp/job-1.wav');
     });

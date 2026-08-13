@@ -137,7 +137,14 @@ export class TranscriptionService implements OnApplicationBootstrap {
         ? await this.tryDiarize(job.id, job.wavFilePath, result.srt)
         : null;
 
-      await this.historyRepository.markDone(job.id, result.text, result.srt, speakerSegments);
+      await this.historyRepository.markDone(
+        job.id,
+        result.text,
+        result.srt,
+        result.lowConfidenceRatio,
+        result.isLowConfidenceWarning,
+        speakerSegments,
+      );
 
       await this.deleteWavFileSafely(job.wavFilePath);
     } catch (error) {

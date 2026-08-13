@@ -89,6 +89,21 @@ Un modèle non présent dans `./models/` fera simplement échouer les jobs
 qui le sélectionnent (`errorMessage` explicite en base, fichier audio
 conservé pour un nouvel essai).
 
+### 5. Réglages de performance (optionnel)
+
+Par défaut, whisper.cpp utilise 4 threads. Sur une machine disposant de
+plus de coeurs, vous pouvez augmenter ce nombre via `WHISPER_THREADS`
+(`.env` racine ou `backend/.env.example` selon votre mode de lancement) :
+
+```
+WHISPER_THREADS=8
+```
+
+> Sur un CPU Intel hybride (coeurs Performance/Efficience), augmenter
+> `WHISPER_THREADS` n'accélère pas toujours la transcription — mesurez
+> avant d'ajuster cette valeur. Laisser `0` (ou la variable absente)
+> conserve le comportement par défaut de whisper.cpp.
+
 ---
 
 ## Diarisation (optionnelle)
@@ -270,6 +285,11 @@ en détail dans :
   `FAILED` au boot (`"Interrompu par un redémarrage du serveur"`).
 - La diarisation (identification des locuteurs) est opt-in et jamais
   bloquante — voir [Diarisation (optionnelle)](#diarisation-optionnelle).
+- Un garde-fou de confiance calcule, en best-effort et jamais bloquant
+  (même philosophie que la diarisation), la part de tokens peu fiables
+  de chaque transcription (`isLowConfidenceWarning`) — c'est un simple
+  avertissement affiché côté résultat, jamais un blocage de
+  l'enregistrement ni une suppression de contenu.
 
 ---
 

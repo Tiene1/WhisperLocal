@@ -39,6 +39,11 @@ services:
       FFPROBE_BINARY_PATH: /usr/bin/ffprobe
       UPLOAD_TMP_DIR: /tmp/whisperlocal-uploads
       MAX_UPLOAD_SIZE_MB: ${MAX_UPLOAD_SIZE_MB:-250}
+      # Optionnel, propre au CPU de la machine hôte (pas au conteneur) — 0
+      # (défaut) laisse whisper.cpp décider (4 threads). Sur un CPU Intel
+      # hybride (coeurs Performance/Efficience), plus de threads n'accélère
+      # pas toujours : mesure avant d'augmenter.
+      WHISPER_THREADS: ${WHISPER_THREADS:-0}
       # Service interne de diarisation (opt-in, jamais bloquant) — jamais
       # exposé côté hôte, cf. service `diarization` ci-dessous.
       DIARIZATION_SERVICE_URL: http://diarization:8001
