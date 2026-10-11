@@ -31,3 +31,7 @@ frontend/test-results/
 # versionné — schémas C4 utiles pour comprendre l'architecture visuellement.)
 /files/
 /Code Source HTML WhisperLocal.txt
+
+# Captures et vidéos de démonstration destinées au portfolio (hébergées
+# sur le portfolio, pas dans le repo).
+/portfolio-media/
