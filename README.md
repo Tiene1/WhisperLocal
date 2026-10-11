@@ -8,10 +8,8 @@ de calcul de votre propre machine.
 Usage mono-utilisateur, sans authentification. Distribué en open-source
 — si vous clonez ce repo, vous faites tourner votre propre instance isolée.
 
-![Démo WhisperLocal](assets/demo.gif)
-
-*Conteneurs Docker → transcription WhisperLocal → comparaison avec
-TurboScribe (plateforme commerciale).*
+**Démonstration en vidéo et captures d'écran** : [page du projet sur mon
+portfolio](https://cedrictiene.tech/projects/whisperlocal).
 
 ---
 
@@ -174,9 +172,10 @@ Au démarrage du conteneur `api`, le schéma de base de données est
 synchronisé automatiquement (`prisma db push`) — pas d'étape de
 migration manuelle nécessaire pour un premier lancement.
 
-**Pour tester rapidement** sans préparer votre propre fichier audio, un
-échantillon d'1 minute (domaine public) est fourni dans
-[`samples/`](samples/) — dépose-le simplement dans l'interface d'upload.
+**Pour tester rapidement** sans préparer votre propre fichier audio, deux
+échantillons d'1 minute (domaine public), l'un en anglais et l'autre en
+français à deux voix, sont fournis dans [`samples/`](samples/) — déposez
+l'un d'eux dans l'interface d'upload.
 
 ---
 
